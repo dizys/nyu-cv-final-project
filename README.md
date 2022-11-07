@@ -43,3 +43,5 @@ or
 ```bash
 ./dataset_factory -d dataset/raw -o dataset/processed -s 256
 ```
+
+The processed dataset will be saved to `dataset/processed` folder.
