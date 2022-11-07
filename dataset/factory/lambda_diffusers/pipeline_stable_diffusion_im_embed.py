@@ -11,7 +11,6 @@ from diffusers.models import AutoencoderKL, UNet2DConditionModel
 from diffusers.pipeline_utils import DiffusionPipeline
 from diffusers.schedulers import DDIMScheduler, LMSDiscreteScheduler, PNDMScheduler
 from diffusers.pipelines.stable_diffusion.safety_checker import StableDiffusionSafetyChecker
-
 class StableDiffusionImageEmbedPipeline(DiffusionPipeline):
     def __init__(
         self,

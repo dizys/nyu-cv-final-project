@@ -4,7 +4,7 @@ from typing import List, Tuple, Union
 from .lambda_diffusers import StableDiffusionImageEmbedPipeline
 from PIL import Image
 import torch
-from fastprogress import progress_bar
+from .eta import ETAProgress
 
 class DatasetFactory:
     def __init__(self, original_image_folder: Union[str, Path], output_folder: Union[str, Path], output_image_size: int = 256):
@@ -16,11 +16,14 @@ class DatasetFactory:
         else:
             self.device = "cpu"
             print("Warning: CUDA is not available. This is running on CPU and will be very slow.")
+        print("Loading pretrained Stable Diffusion model...")
         pipe = StableDiffusionImageEmbedPipeline.from_pretrained("lambdalabs/sd-image-variations-diffusers")
         self.pipe = pipe.to(self.device)
+        print("- Stable Diffusion model loaded.")
 
     def _glob_all_original_images(self) -> List[Path]:
-        return [path for path in self.original_image_folder.glob("**/*.{jpg,jpeg,png}")]
+        exts = [".jpg", ".jpeg", ".png"]
+        return [path for path in self.original_image_folder.rglob("*") if path.suffix.lower() in exts]
 
     def _init_folders(self):
         self.output_folder.mkdir(parents=True, exist_ok=True)
@@ -75,13 +78,17 @@ class DatasetFactory:
         assert dataset_size == len(output_original_image_paths) == len(output_ai_image_paths)
         print(f"- Found {dataset_size} images to process.")
 
-        for index in progress_bar(range(dataset_size)):
+        eta = ETAProgress(dataset_size)
+
+        for index in range(dataset_size):
+            print(f"{index}/{dataset_size} - Processing {origin_image_paths[index]}...")
             origin_image_path = origin_image_paths[index]
             output_original_image_path = output_original_image_paths[index]
             output_ai_image_path = output_ai_image_paths[index]
 
             if output_original_image_path.exists() and output_ai_image_path.exists():
                 print(f"- Skip {origin_image_path} because it has already been processed.")
+                eta.update(index)
                 continue
 
             origin_image = Image.open(origin_image_path)
@@ -90,5 +97,7 @@ class DatasetFactory:
 
             output_original_image.save(output_original_image_path)
             output_ai_image.save(output_ai_image_path)
+
+            eta.update(index)
 
         print("- Done.")

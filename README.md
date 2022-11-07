@@ -21,3 +21,25 @@ source venv/bin/activate
 ```bash
 pip install -r requirements.txt
 ```
+
+## Make Dataset
+
+### Download dataset
+
+Indoor Scene Dataset: [Download](http://web.mit.edu/torralba/www/indoor.html)
+
+### Extract dataset to `dataset/raw` folder
+
+Put all the images in `dataset/raw` folder. The folder structure should retain the same as the original dataset.
+
+### Run `dataset_factory`
+
+```bash
+./dataset_factory
+```
+
+or
+
+```bash
+./dataset_factory -d dataset/raw -o dataset/processed -s 256
+```
