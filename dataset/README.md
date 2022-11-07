@@ -22,6 +22,8 @@ A shell script is provided to download and extract the raw dataset. The script w
 
 ### Run `dataset_factory` to process raw dataset
 
+Processing the raw dataset includes generating new images using Stable Diffusion model and cropping and resizing images to 256x256.
+
 ```bash
 ./dataset_factory
 ```
