@@ -92,6 +92,8 @@ class DatasetFactory:
                 continue
 
             origin_image = Image.open(origin_image_path)
+            if origin_image.mode != 'RGB':
+                origin_image = origin_image.convert('RGB')
             output_original_image = self._center_crop_and_resize_image(origin_image)
             output_ai_image = self._center_crop_and_resize_image(self.generate_one_ai_image(origin_image))
 
