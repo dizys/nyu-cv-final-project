@@ -2,6 +2,8 @@
 
 This dataset is used for NYU CV Final Project: build a AI-generated v.s. real-life-captured image classifier. We built it by generating images from real photos using Stable-Diffusion-based image-to-image model.
 
+![](https://user-images.githubusercontent.com/23469706/200314769-ddd1690f-a261-4110-9a99-08fd908517c0.png)
+
 ## Stable Diffusion
 
 The model we use is a pretrained conditioned Stable Diffusion model that accepts CLIP image embedding rather than text embeddings. So it's capable of generating variations from any given image embedding. The repository for the model is at https://github.com/LambdaLabsML/lambda-diffusers.
