@@ -22,6 +22,16 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
+or when on HPC, to avoid exceeding home inode quota:
+
+```bash
+pip install -r requirements.txt --no-cache-dir
+
+# or
+
+pip install -r requirements.txt --no-index --find-links=/scratch/$USER/pip_cache
+```
+
 ## Make Dataset
 
 ### Download raw dataset and extract it
