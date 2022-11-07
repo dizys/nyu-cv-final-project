@@ -1,0 +1,31 @@
+{
+    "python.linting.enabled": true,
+    "prettier.tabWidth": 4,
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true,
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.rulers": [80],
+    "files.eol": "\n",
+    "files.insertFinalNewline": true,
+    "files.trimTrailingWhitespace": true,
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.python"
+    },
+    "cSpell.words": [
+        "Autoencoder",
+        "cuda",
+        "DDIM",
+        "fastprogress",
+        "Imagen",
+        "lambdalabs",
+        "openai",
+        "PNDM",
+        "pretrained",
+        "randn",
+        "timesteps",
+        "uncond",
+        "unet",
+        "unsqueeze"
+    ]
+}
