@@ -32,26 +32,10 @@ pip install -r requirements.txt --no-cache-dir
 pip install -r requirements.txt --no-index --find-links=/scratch/$USER/pip_cache
 ```
 
-## Make Dataset
+## Get Dataset
 
-### Download raw dataset and extract it
+We custom built the dataset ourselves from existing public real-photo datasets. We used Stable-Diffusion-based image-to-image model to generate images from real photos. This way, we ended up with a labeled dataset of real photos and generated photos. Learn how to build the dataset from [dataset/README.md](dataset/README.md).
 
-A shell script is provided to download and extract the raw dataset. The script will download the raw dataset to `dataset/raw` directory.
+## License
 
-```bash
-./dataset/download_indoor.sh
-```
-
-### Run `dataset_factory` to process raw dataset
-
-```bash
-./dataset_factory
-```
-
-or
-
-```bash
-./dataset_factory -d dataset/raw -o dataset/processed -s 256
-```
-
-The processed dataset will be saved to `dataset/processed` folder.
+[MIT](LICENSE)
