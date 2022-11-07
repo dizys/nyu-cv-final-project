@@ -28,19 +28,15 @@ pip install -r requirements.txt
 
 A shell script is provided to download and extract the raw dataset. The script will download the raw dataset to `dataset/raw` directory.
 
-````bash
-
 ```bash
 ./dataset/download_indoor.sh
-````
+```
 
 ### Run `dataset_factory` to process raw dataset
 
-````bash
-
 ```bash
 ./dataset_factory
-````
+```
 
 or
 
