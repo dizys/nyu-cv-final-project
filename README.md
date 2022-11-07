@@ -24,19 +24,23 @@ pip install -r requirements.txt
 
 ## Make Dataset
 
-### Download dataset
+### Download raw dataset and extract it
 
-Indoor Scene Dataset: [Download](http://web.mit.edu/torralba/www/indoor.html)
+A shell script is provided to download and extract the raw dataset. The script will download the raw dataset to `dataset/raw` directory.
 
-### Extract dataset to `dataset/raw` folder
+````bash
 
-Put all the images in `dataset/raw` folder. The folder structure should retain the same as the original dataset.
+```bash
+./dataset/download_indoor.sh
+````
 
-### Run `dataset_factory`
+### Run `dataset_factory` to process raw dataset
+
+````bash
 
 ```bash
 ./dataset_factory
-```
+````
 
 or
 
