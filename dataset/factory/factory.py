@@ -127,8 +127,14 @@ class DatasetFactory:
                 origin_image = origin_image.convert('RGB')
             output_original_image = self._center_crop_and_resize_image(
                 origin_image)
+            try:
+                output_ai_image = self.generate_one_ai_image(origin_image)
+            except Exception as e:
+                print(f"- Error: {e}")
+                eta.update(index)
+                continue
             output_ai_image = self._center_crop_and_resize_image(
-                self.generate_one_ai_image(origin_image))
+                output_ai_image)
 
             output_original_image.save(output_original_image_path)
             output_ai_image.save(output_ai_image_path)
