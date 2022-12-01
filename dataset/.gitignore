@@ -1,4 +1,5 @@
 /raw
 /processed
+/processed_*
 /download
 *.tar

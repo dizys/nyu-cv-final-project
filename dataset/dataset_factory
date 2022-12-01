@@ -5,12 +5,21 @@ from argparse import ArgumentParser
 from factory import DatasetFactory
 
 if __name__ == "__main__":
-    parser = ArgumentParser(description='Dataset factory that use Stable Diffusion model to generate image variations from original images.')
-    parser.add_argument('-d', '--dataset', type=str, default='raw', help='Path to the raw dataset folder.')
-    parser.add_argument('-o', '--output-dir', type=str, default='processed', help='Path to the output processed dataset folder.')
-    parser.add_argument('-s', '--output-image-size', type=int, default=256, help='Output image size.')
+    parser = ArgumentParser(
+        description='Dataset factory that use Stable Diffusion model to generate image variations from original images.')
+    parser.add_argument('-m', '--model', type=str, default='stable-diffusion',
+                        help='Model name, supports "stable-diffusion", "dalle2"')
+    parser.add_argument('-d', '--dataset', type=str,
+                        default='raw', help='Path to the raw dataset folder.')
+    parser.add_argument('-o', '--output-dir', type=str, default='processed',
+                        help='Path to the output processed dataset folder.')
+    parser.add_argument('-s', '--output-image-size', type=int,
+                        default=256, help='Output image size.')
+    parser.add_argument('-n', '--num', type=int, default=0,
+                        help='Number of random sample images to generate from. 0 means all images.')
 
     args = parser.parse_args()
 
-    dataset_factory = DatasetFactory(args.dataset, args.output_dir, args.output_image_size)
+    dataset_factory = DatasetFactory(
+        args.model, args.dataset, args.output_dir, args.output_image_size, args.num)
     dataset_factory.generate()

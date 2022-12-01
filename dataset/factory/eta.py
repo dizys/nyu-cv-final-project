@@ -1,5 +1,6 @@
 import time
 
+
 class ETAProgress:
     def __init__(self, total: int):
         self.total = total
@@ -20,7 +21,8 @@ class ETAProgress:
         eta = (self.total - index) / speed
         self.last_eta = eta
         self.last_speed = speed
-        print(f"ETA: {self._format_time(eta)} - Speed: {self._format_speed(speed)}it/s")
+        print(
+            f"ETA: {self._format_time(eta)} - Speed: {self._format_speed(speed)}it/s")
 
     def _format_time(self, seconds: float) -> str:
         seconds = int(seconds)
@@ -37,4 +39,3 @@ class ETAProgress:
 
     def __str__(self):
         return f"- ETA: {self._format_time(self.last_eta)} - Speed: {self._format_speed(self.last_speed)}"
-

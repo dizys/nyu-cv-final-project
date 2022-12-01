@@ -11,6 +11,8 @@ from diffusers.models import AutoencoderKL, UNet2DConditionModel
 from diffusers.pipeline_utils import DiffusionPipeline
 from diffusers.schedulers import DDIMScheduler, LMSDiscreteScheduler, PNDMScheduler
 from diffusers.pipelines.stable_diffusion.safety_checker import StableDiffusionSafetyChecker
+
+
 class StableDiffusionImageEmbedPipeline(DiffusionPipeline):
     def __init__(
         self,
@@ -30,7 +32,8 @@ class StableDiffusionImageEmbedPipeline(DiffusionPipeline):
             safety_checker=safety_checker,
             feature_extractor=feature_extractor,
         )
-        self.image_processor = CLIPFeatureExtractor.from_pretrained("openai/clip-vit-large-patch14")
+        self.image_processor = CLIPFeatureExtractor.from_pretrained(
+            "openai/clip-vit-large-patch14")
 
     @torch.no_grad()
     def __call__(
@@ -63,13 +66,16 @@ class StableDiffusionImageEmbedPipeline(DiffusionPipeline):
         elif isinstance(input_image, list):
             batch_size = len(input_image)
         else:
-            raise ValueError(f"`input_image` has to be of type `str` or `list` but is {type(input_image)}")
+            raise ValueError(
+                f"`input_image` has to be of type `str` or `list` but is {type(input_image)}")
 
         if height % 8 != 0 or width % 8 != 0:
-            raise ValueError(f"`height` and `width` have to be divisible by 8 but are {height} and {width}.")
+            raise ValueError(
+                f"`height` and `width` have to be divisible by 8 but are {height} and {width}.")
 
         if not isinstance(input_image, torch.FloatTensor):
-            input_image = self.image_processor(images=input_image, return_tensors="pt").to(self.device)
+            input_image = self.image_processor(
+                images=input_image, return_tensors="pt").to(self.device)
 
         image_embeddings = self.image_encoder.get_image_features(**input_image)
         image_embeddings = image_embeddings.unsqueeze(1)
@@ -88,7 +94,8 @@ class StableDiffusionImageEmbedPipeline(DiffusionPipeline):
             image_embeddings = torch.cat([uncond_embeddings, image_embeddings])
 
         # get the initial random noise unless the user supplied it
-        latents_shape = (batch_size, self.unet.in_channels, height // 8, width // 8)
+        latents_shape = (batch_size, self.unet.in_channels,
+                         height // 8, width // 8)
         if latents is None:
             latents = torch.randn(
                 latents_shape,
@@ -97,11 +104,13 @@ class StableDiffusionImageEmbedPipeline(DiffusionPipeline):
             )
         else:
             if latents.shape != latents_shape:
-                raise ValueError(f"Unexpected latents shape, got {latents.shape}, expected {latents_shape}")
+                raise ValueError(
+                    f"Unexpected latents shape, got {latents.shape}, expected {latents_shape}")
             latents = latents.to(self.device)
 
         # set timesteps
-        accepts_offset = "offset" in set(inspect.signature(self.scheduler.set_timesteps).parameters.keys())
+        accepts_offset = "offset" in set(inspect.signature(
+            self.scheduler.set_timesteps).parameters.keys())
         extra_set_kwargs = {}
         if accepts_offset:
             extra_set_kwargs["offset"] = 1
@@ -116,32 +125,39 @@ class StableDiffusionImageEmbedPipeline(DiffusionPipeline):
         # eta (η) is only used with the DDIMScheduler, it will be ignored for other schedulers.
         # eta corresponds to η in DDIM paper: https://arxiv.org/abs/2010.02502
         # and should be between [0, 1]
-        accepts_eta = "eta" in set(inspect.signature(self.scheduler.step).parameters.keys())
+        accepts_eta = "eta" in set(inspect.signature(
+            self.scheduler.step).parameters.keys())
         extra_step_kwargs = {}
         if accepts_eta:
             extra_step_kwargs["eta"] = eta
 
         for i, t in enumerate(self.progress_bar(self.scheduler.timesteps)):
             # expand the latents if we are doing classifier free guidance
-            latent_model_input = torch.cat([latents] * 2) if do_classifier_free_guidance else latents
+            latent_model_input = torch.cat(
+                [latents] * 2) if do_classifier_free_guidance else latents
             if isinstance(self.scheduler, LMSDiscreteScheduler):
                 sigma = self.scheduler.sigmas[i]
                 # the model input needs to be scaled to match the continuous ODE formulation in K-LMS
-                latent_model_input = latent_model_input / ((sigma**2 + 1) ** 0.5)
+                latent_model_input = latent_model_input / \
+                    ((sigma**2 + 1) ** 0.5)
 
             # predict the noise residual
-            noise_pred = self.unet(latent_model_input, t, encoder_hidden_states=image_embeddings)["sample"]
+            noise_pred = self.unet(
+                latent_model_input, t, encoder_hidden_states=image_embeddings)["sample"]
 
             # perform guidance
             if do_classifier_free_guidance:
                 noise_pred_uncond, noise_pred_text = noise_pred.chunk(2)
-                noise_pred = noise_pred_uncond + guidance_scale * (noise_pred_text - noise_pred_uncond)
+                noise_pred = noise_pred_uncond + guidance_scale * \
+                    (noise_pred_text - noise_pred_uncond)
 
             # compute the previous noisy sample x_t -> x_t-1
             if isinstance(self.scheduler, LMSDiscreteScheduler):
-                latents = self.scheduler.step(noise_pred, i, latents, **extra_step_kwargs)["prev_sample"]
+                latents = self.scheduler.step(
+                    noise_pred, i, latents, **extra_step_kwargs)["prev_sample"]
             else:
-                latents = self.scheduler.step(noise_pred, t, latents, **extra_step_kwargs)["prev_sample"]
+                latents = self.scheduler.step(
+                    noise_pred, t, latents, **extra_step_kwargs)["prev_sample"]
 
         # scale and decode the image latents with vae
         latents = 1 / 0.18215 * latents
