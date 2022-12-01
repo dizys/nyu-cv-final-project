@@ -38,7 +38,7 @@ The processed dataset will be saved to `processed` folder.
 
 ### Build DALLE2 dataset
 
-Additionally, we have used the closed-source DALLE2 model from OpenAI to generate image variations as well. But since each image costs $0.018 to generate, we only generated around 500 images.
+Additionally, we have used the closed-source DALLE2 model from OpenAI to generate image variations as well. But since each image costs $0.018 to generate, we only generated around 600 images.
 
 Here's how to build the DALLE2 using OpenAI's APIs:
 
