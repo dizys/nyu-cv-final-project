@@ -36,7 +36,7 @@ pip install -r requirements.txt --no-index --find-links=/scratch/$USER/pip_cache
 
 We custom built the dataset ourselves from existing public real-photo datasets. We used Stable-Diffusion-based image-to-image model to generate images from real photos. This way, we ended up with a labeled dataset of real photos and generated photos. Learn how to build the dataset from [dataset/README.md](dataset/README.md).
 
-Download dataset: [Release 1.0.0](https://github.com/dizys/nyu-cv-final-project/releases/download/dataset/NYU_CV_RVAP_dataset_1.0.0.zip)
+Download datasets: [Dataset Releases](https://github.com/dizys/nyu-cv-final-project/releases/tag/dataset)
 
 ## License
 
