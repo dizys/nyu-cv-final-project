@@ -20,6 +20,12 @@ A shell script is provided to download and extract the raw dataset. The script w
 ./download_indoor.sh
 ```
 
+or, alternatively, to download weather dataset:
+
+```bash
+./download_weather.sh
+```
+
 ### Run `dataset_factory` to process raw dataset
 
 Processing the raw dataset includes generating new images using Stable Diffusion model and cropping and resizing images to 256x256.
