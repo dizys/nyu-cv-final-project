@@ -25,7 +25,9 @@ class DatasetFactory:
                     "Warning: CUDA is not available. This is running on CPU and will be very slow.")
             print("Loading pretrained Stable Diffusion model...")
             pipe = StableDiffusionImageEmbedPipeline.from_pretrained(
-                "lambdalabs/sd-image-variations-diffusers")
+                "lambdalabs/sd-image-variations-diffusers",
+                revision="273115e88df42350019ef4d628265b8c29ef4af5",
+            )
             self.pipe = pipe.to(self.device)
             print("- Stable Diffusion model loaded.")
 
