@@ -16,7 +16,7 @@ class DatasetFactory:
         self.output_folder = Path(output_folder)
         self.output_image_size = output_image_size
         self.num = num
-        if self.model == "lambda_diffusers":
+        if self.model == "stable-diffusion":
             if torch.cuda.is_available():
                 self.device = "cuda"
             else:
@@ -79,7 +79,7 @@ class DatasetFactory:
         return image[0]
 
     def generate_one_ai_image(self, original_image: Image.Image) -> Image.Image:
-        if self.model == "lambda_diffusers":
+        if self.model == "stable-diffusion":
             return self._generate_one_ai_image_by_stable_diffusion(original_image)
         elif self.model == "dalle2":
             return generate_variations(original_image)
