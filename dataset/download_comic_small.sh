@@ -9,20 +9,20 @@ rm -rf "${raw_dir}"
 
 # Download the dataset
 echo "Downloading the dataset..."
-wget -O "${download_dir}/comic_books_dataset.zip" "https://github.com/dizys/nyu-cv-final-project/releases/download/raw-datasets/comic_books_dataset.zip"
+wget -O "${download_dir}/comic_books_small_dataset.zip" "https://github.com/dizys/nyu-cv-final-project/releases/download/raw-datasets/comic_books_small_dataset.zip"
 
-mkdir -p "${download_dir}/comic"
+mkdir -p "${download_dir}/comic_small"
 
 echo "Extracting the dataset..."
 # Extract the dataset
-unzip -qq "${download_dir}/comic_books_dataset.zip" -d "${download_dir}/comic"
+unzip -qq "${download_dir}/comic_books_small_dataset.zip" -d "${download_dir}/comic_small"
 
 # Move the dataset to the raw directory
 echo "Moving the dataset to the raw directory..."
-mv "${download_dir}/comic/" "$raw_dir"
+mv "${download_dir}/comic_small/" "$raw_dir"
 
 # Remove the downloaded file and the extracted folder
 echo "Removing the downloaded file and the extracted folder..."
-rm "${download_dir}/comic_books_dataset.zip"
+rm "${download_dir}/comic_books_small_dataset.zip"
 
 echo "- Done."
