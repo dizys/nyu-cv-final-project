@@ -38,6 +38,13 @@ We custom built the dataset ourselves from existing public real-photo datasets. 
 
 Download datasets: [Dataset Releases](https://github.com/dizys/nyu-cv-final-project/releases/tag/dataset)
 
+## Experiment Notebooks
+
+-   [ResNet34](notebooks/fastai_resnet34.ipynb)
+-   [ResNet50](notebooks/fastai_xresnet50.ipynb)
+-   [ResNet Dalle2 Evaluation](notebooks/fastai_resnet_dalle2_eval.ipynb)
+-   [ResNet Weather Dataset Evaluation](notebooks/fastai_resnet34_weather_eval.ipynb)
+
 ## License
 
 [MIT](LICENSE)
