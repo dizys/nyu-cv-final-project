@@ -15,7 +15,7 @@ mkdir -p "${download_dir}/indoorCVPR_09"
 
 echo "Extracting the dataset..."
 # Extract the dataset
-tar -xvf "${download_dir}/indoorCVPR_09.tar" -C "${download_dir}/indoorCVPR_09"
+tar -xf "${download_dir}/indoorCVPR_09.tar" -C "${download_dir}/indoorCVPR_09"
 
 # Move the dataset to the raw directory
 echo "Moving the dataset to the raw directory..."
