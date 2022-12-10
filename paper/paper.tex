@@ -1,0 +1,100 @@
+% This must be in the first 5 lines to tell arXiv to use pdfLaTeX, which is strongly recommended.
+\pdfoutput=1
+% In particular, the hyperref package requires pdfLaTeX in order to break URLs across lines.
+
+\documentclass[11pt]{article}
+
+% Remove the "review" option to generate the final version.
+\usepackage[]{acl}
+
+% Standard package includes
+\usepackage{natbib}
+\usepackage{lastpage}
+\usepackage{fancyhdr}
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage{float}
+\usepackage{graphicx}
+
+% For proper rendering and hyphenation of words containing Latin characters (including in bib files)
+\usepackage[T1]{fontenc}
+% For Vietnamese characters
+% \usepackage[T5]{fontenc}
+% See https://www.latex-project.org/help/documentation/encguide.pdf for other character sets
+
+% This assumes your files are encoded as UTF8
+\usepackage[utf8]{inputenc}
+
+% This is not strictly necessary, and may be commented out,
+% but it will improve the layout of the manuscript,
+% and will typically save some space.
+\usepackage{microtype}
+
+\pagestyle{fancy}
+\fancyhead{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyfoot[C]{Page \thepage \hspace{1pt} of \pageref{LastPage}}
+
+% If the title and author information does not fit in the area allocated, uncomment the following
+%
+%\setlength\titlebox{<dim>}
+%
+% and set <dim> to something 5cm or larger.
+
+\title{Detecting AI-Generated Images}
+
+\author{Ziyang Zeng \and Zhehu Yuan \and Yifan Jin \\
+  Dept. of Computer Science \\
+  New York University \\
+  251 Mercer Street, New York, NY \\
+  \texttt{zz2960@nyu.edu, zy2262@nyu.edu, yj2063@nyu.edu}}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+  Abstract goes here.
+\end{abstract}
+
+\section{Introduction}
+
+Introduction goes here.
+
+
+\section{Related Work}
+
+Related work goes here.
+
+\section{Datasets}
+
+Datasets go here.
+
+\section{Classifier}
+
+Classifier goes here.
+
+\section{Experiments}
+
+Experiments go here.
+
+
+\subsection{Evaluation Metrics}
+
+Evaluation metrics go here.
+
+\section{Experiment Results}
+
+Experiment results go here.
+
+\section{Conclusion}
+
+Conclusion goes here.
+
+\section{Discussion and Future Work}
+
+Discussion and future work go here.
+
+% \printbibliography
+\bibliographystyle{plain}
+\bibliography{refs}
+
+\end{document}

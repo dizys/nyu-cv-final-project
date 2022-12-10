@@ -7,3 +7,12 @@ venv/
 .installed.cfg
 *.egg
 *.log
+
+# Latex
+*.aux
+*.fdb_latexmk
+*.fls
+*.synctex.gz
+*.out
+*.bbl
+*.blg
