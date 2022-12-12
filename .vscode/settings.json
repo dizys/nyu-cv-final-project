@@ -12,6 +12,69 @@
     "[python]": {
         "editor.defaultFormatter": "ms-python.python"
     },
+    "[tex]": {
+        // Enable intellisence/quick suggestions
+        "editor.suggest.snippetsPreventQuickSuggestions": false,
+        // Indentation size
+        "editor.tabSize": 2
+    },
+    "[latex]": {
+        // Enable intellisence/quick suggestions
+        "editor.suggest.snippetsPreventQuickSuggestions": false,
+        // Indentation size
+        "editor.tabSize": 2
+    },
+    "[bibtex]": {
+        // Indentation size
+        "editor.tabSize": 2
+    },
+    // ---------- LaTeX Workshop ----------
+    //  Enable command and environment completion for used package
+    "latex-workshop.intellisense.package.enabled": true,
+    // target file when deleting generated file
+    // Add "* .synctex.gz" to default value
+    "latex-workshop.latex.clean.fileTypes": [
+        "*.aux",
+        "*.bbl",
+        "*.blg",
+        "*.idx",
+        "*.ind",
+        "*.lof",
+        "*.lot",
+        "*.out",
+        "*.toc",
+        "*.acn",
+        "*.acr",
+        "*.alg",
+        "*.glg",
+        "*.glo",
+        "*.gls",
+        "*.ist",
+        "*.fls",
+        "*.log",
+        "*.fdb_latexmk",
+        "*.snm",
+        "*.nav",
+        "*.dvi",
+        "*.synctex.gz"
+    ],
+    // dump generated files to "out" directory
+    "latex-workshop.latex.outDir": "out",
+    // Build recipe
+    "latex-workshop.latex.recipes": [
+        {
+            "name": "latexmk",
+            "tools": ["latexmk"]
+        }
+    ],
+    // Parts used in the build recipe
+    "latex-workshop.latex.tools": [
+        {
+            "name": "latexmk",
+            "command": "latexmk",
+            "args": ["-silent", "-outdir=%OUTDIR%", "%DOC%"]
+        }
+    ],
     "cSpell.words": [
         "Autoencoder",
         "cuda",
