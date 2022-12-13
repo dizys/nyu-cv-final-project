@@ -26,7 +26,8 @@
     },
     "[bibtex]": {
         // Indentation size
-        "editor.tabSize": 2
+        "editor.tabSize": 2,
+        "editor.defaultFormatter": "James-Yu.latex-workshop"
     },
     // ---------- LaTeX Workshop ----------
     //  Enable command and environment completion for used package
