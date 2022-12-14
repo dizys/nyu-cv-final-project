@@ -40,10 +40,21 @@ Download datasets: [Dataset Releases](https://github.com/dizys/nyu-cv-final-proj
 
 ## Experiment Notebooks
 
--   [ResNet34](notebooks/fastai_resnet34.ipynb)
--   [ResNet50](notebooks/fastai_xresnet50.ipynb)
--   [ResNet Dalle2 Evaluation](notebooks/fastai_resnet_dalle2_eval.ipynb)
--   [ResNet Weather Dataset Evaluation](notebooks/fastai_resnet34_weather_eval.ipynb)
+Train on the main dataset:
+
+-   [ResNet34](notebooks/fastai_resnet34_train.ipynb)
+-   [ResNet50](notebooks/fastai_resnet50_train.ipynb)
+
+Test on other datasets:
+
+-   [ResNet34 Test on Weather Dataset with Stable Diffusion](notebooks/fastai_resnet34_test_weather.ipynb)
+-   [ResNet50 Test on Weather Dataset with Stable Diffusion](notebooks/fastai_resnet50_test_weather.ipynb)
+-   [ResNet34 Test on Comic Dataset with Stable Diffusion](notebooks/fastai_resnet34_test_comic.ipynb)
+-   [ResNet50 Test on Comic Dataset with Stable Diffusion](notebooks/fastai_resnet50_test_comic.ipynb)
+-   [ResNet34 Test on Small Indoor Dataset with DALLE2](notebooks/fastai_resnet34_test_dalle2_small_indoor.ipynb)
+-   [ResNet50 Test on Small Indoor Dataset with DALLE2](notebooks/fastai_resnet50_test_dalle2_small_indoor.ipynb)
+-   [ResNet34 Test on Weather Dataset with DALLE2](notebooks/fastai_resnet34_test_dalle2_weather.ipynb)
+-   [ResNet50 Test on Weather Dataset with DALLE2](notebooks/fastai_resnet50_test_dalle2_weather.ipynb)
 
 ## License
 
