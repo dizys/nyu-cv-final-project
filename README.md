@@ -36,17 +36,19 @@ pip install -r requirements.txt --no-index --find-links=/scratch/$USER/pip_cache
 
 We custom built the dataset ourselves from existing public real-photo datasets. We used diffusion-model-based image-to-image models to generate images from real photos, including Stable Diffusion and DALLE2(available only as APIs). This way, we ended up with a labeled dataset of real photos and generated photos.
 
--   How we built it: [dataset/README.md](dataset/README.md)
+-   How we built the dataset: [dataset/README.md](dataset/README.md)
 -   Download datasets: [Dataset Releases](https://github.com/dizys/nyu-cv-final-project/releases/tag/dataset)
 
 ## Experiment Notebooks
 
-Train on the main dataset:
+We trained and tested our binary classifier on Google Colab. The notebooks are available in the [notebooks](notebooks) folder.
+
+Training on the main dataset:
 
 -   [ResNet34 Train](notebooks/fastai_resnet34_train.ipynb)
 -   [ResNet50 Train](notebooks/fastai_resnet50_train.ipynb)
 
-Test on other datasets:
+Testing on other datasets:
 
 -   [ResNet34 Test on Weather Dataset with Stable Diffusion](notebooks/fastai_resnet34_test_weather.ipynb)
 -   [ResNet50 Test on Weather Dataset with Stable Diffusion](notebooks/fastai_resnet50_test_weather.ipynb)
