@@ -59,8 +59,6 @@
         "*.dvi",
         "*.synctex.gz"
     ],
-    // dump generated files to "out" directory
-    "latex-workshop.latex.outDir": "out",
     // Build recipe
     "latex-workshop.latex.recipes": [
         {

@@ -59,7 +59,6 @@
 
 Introduction goes here.
 
-
 \section{Related Work}
 
 Related work goes here.
@@ -78,7 +77,7 @@ The original real-world photos we experimented with are from public datasets: In
 
 Originally targeting at indoor scene recognition tasks, the Indoor Scene Recognition Database is a collection of 67 indoor categories (e.g. airport, living room, restaurant...) and at least 100 images per category \cite{quattoni2009recognizing}. There are 15,620 images in the dataset in total. Figure \ref{fig:paper_indoor_dataset} shows some examples of the dataset.
 
-\begin{figure}[h]
+\begin{figure}[ht]
   \centering
   \includegraphics[width=140pt]{./assets/paper_indoor_dataset.jpg}
   \caption{Indoor Scene Recognition Database Examples}
@@ -90,9 +89,9 @@ This dataset is the biggest among the three datasets we used and serves as our m
 \subsubsection{Weather Image Recognition Dataset}
 \label{sec:weather_dataset}
 
-The Weather Image Recognition Dataset contains labeled 6738 images of different types of weather, its catogories including dew, fog, frost, glaze, etc \cite{DVN/M8JQCR_2021}. This dataset is used in our experiment to evaluate our model's generalization ability and performance on other kinds of photos than indoors.
+The Weather Image Recognition Dataset contains labeled 6738 images of different types of weather, its catogories including dew, fog, frost, glaze, etc \cite{haixia2021weather}. This dataset is used in our experiment to evaluate our model's generalization ability and performance on other kinds of photos than indoors.
 
-\begin{figure}[h]
+\begin{figure}[ht]
   \centering
   \includegraphics[width=140pt]{./assets/paper_weather_dataset.jpg}
   \caption{Weather Image Recognition Dataset Examples}
@@ -104,7 +103,7 @@ The Weather Image Recognition Dataset contains labeled 6738 images of different 
 
 The Comic Books Images Dataset is an open source dataset from Kaggle that contains 512 images from comic book pages \cite{cenkbircanoglu2017comicbooksimages}. Although our goal is to build a classifier to detect AI-generated photos versus real photos, and comic art seems to fall in neither category, we want to test whether our model can detect AI-generated comic art verses real comic art. This can further verify the generalization of our model. We what use to evaluation is a subset of this dataset, containing 513 images. Figure \ref{fig:paper_comic_dataset} shows some examples of the dataset.
 
-\begin{figure}[h]
+\begin{figure}[ht]
   \centering
   \includegraphics[width=140pt]{./assets/paper_comic_dataset.jpg}
   \caption{Comic Books Images Dataset Examples}
@@ -142,14 +141,20 @@ Stable Diffusion is originally trained to be a text-to-image model, which means 
 
 \subsection{Processed Datasets}
 
-By running CLIP-image-encoder-guided Stable Diffusion mentioned in Section \ref{sec:datasets_image_variation_generation} on our raw datasets, we built our main dataset from the indoor dataset in Section \ref{sec:indoor_dataset} which contains 15,621 real-world in-door photos and combined with another 15,621 generated images that are similar to the real-world photos. Aside from the main dataset, we also built two smaller datasets from the weather dataset in \ref{sec:weather_dataset} and the comic book dataset in \ref{sec:comic_dataset} for testing the model's generalization on other genres of photos. For each image in this dataset, we applied center-cropping and resizing postprocessing to make sure they are consistent in image size, being 256x256.
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=\linewidth]{./assets/paper_dataset_processed.jpg}
+  \caption{Stable Diffusion Image-to-Image Examples}
+  \label{fig:paper_processed_dataset}
+\end{figure}
 
+By running the text-conditioned CLIP-guided Stable Diffusion mentioned in Section \ref{sec:datasets_image_variation_generation} on our raw datasets, we built our main dataset from the indoor dataset in Section \ref{sec:indoor_dataset} which contains 15,621 real-world in-door photos and combined with another 15,621 generated images that are similar to the real-world photos. Two examples from this dataset are shown in Figure \ref{fig:paper_processed_dataset}. Aside from the main dataset, we also built two smaller datasets from the weather dataset in \ref{sec:weather_dataset} and the comic book dataset in \ref{sec:comic_dataset} for testing the model's generalization on other genres of photos. For each image in this dataset, we applied center-cropping and resizing postprocessing to make sure they are consistent in image size, being 256x256. Apart from that, we also utilized OpenAI's DALL·E 2's image variation generation API to generate two small datasets from a subset of the indoor dataset and the weather dataset, the former containing 625 AI-generated images + 625 real-world photos, and the latter containing 301+301 images.
 
 \section{ResNet Classifier}
 
 The main task of this project is classification. Over the years, researchers tend to make deeper neural networks(adding more layers) to solve such complex tasks and to also improve the classification accuracy. But, it has been seen that as we go adding on more layers to the neural network, it becomes difficult to train them and the accuracy starts saturating and then degrades also. Therefore, we decided to use \textbf{ResNet}, which overcomes the above issue, to do the classification.
 
-ResNet, short for Residual Network, provides another way for data to reach later regions of the neural network by skipping some layers. Consider a series of layers, from layer $I$ to layer $I + n$, and the function $F$ that these layers represent. Layer $i$'s input is denoted by $x$. $x$ will simply run through these layers one by one in a classic feedforward arrangement, and the result of layer $I + n$ is $F(x)$$.
+ResNet, short for Residual Network, provides another way for data to reach later regions of the neural network by skipping some layers. Consider a series of layers, from layer $I$ to layer $I + n$, and the function $F$ that these layers represent. Layer $i$'s input is denoted by $x$. $x$ will simply run through these layers one by one in a classic feedforward arrangement, and the result of layer $I + n$ is $F(x)$.
 
 The Resnet conducts element-wise addition $F(x) + x$ after applying identity mapping to $x$. A residual block or a building block is the term used in literature to describe the entire architecture that takes an input $x$ and creates an output $F(x) + x$. An activation function, such as ReLU applied to $F(x) + x$, is frequently included in a residual block.
 
@@ -157,8 +162,6 @@ The advantage of adding this type of skip connection is that if any layer hurt t
 
 
 \section{Experiments}
-
-
 
 \subsection{Experiment Settings}
 
@@ -204,18 +207,29 @@ F1 = \frac{2 \times Precision \times Recall}{Precision + Recall}
 
 \section{Experiment Results}
 
-Experiment results go here.
+% TODO: Placeholder for now, data not real
+\begin{table*}
+  \centering
+  \begin{tabular}{c|c||c|c|c|c}
+    \hline
+    \textbf{Dataset} & \textbf{Model} & \textbf{Precision} & \textbf{Recall} & \textbf{F1-Score} & \textbf{Accuracy} \\
+    \hline
+    Indoor + SD & ResNet34       & {71.88\%}          & {61.33\%}       & {66.19\%}      & {71.88\%}    \\
+    Indoor + SD & ResNet50           & {93.75\%}          & {90.00\%}       & {91.84\%}      & {71.88\%}    \\
+    Weather + SD & ResNet34  & {93.19\%}          & {91.33\%}       & {92.25\%}       & {71.88\%}   \\
+    Weather + SD & ResNet50       & {92.00\%}          & {92.00\%}       & {92.00\%}      & {71.88\%}    \\
+    Comic + SD & ResNet34 & {92.00\%}          & {92.00\%}       & {92.00\%}      & {71.88\%}    \\
+    Comic + SD & ResNet50 & {92.00\%}          & {92.00\%}       & {92.00\%}      & {71.88\%}    \\
+    Small Indoor + DALLE2 & ResNet34 & {92.67\%}          & {92.67\%}       & {92.67\%}      & {71.88\%}    \\
+    Small Indoor + DALLE2 & ResNet50 & {92.67\%}          & {92.67\%}       & {92.67\%}      & {71.88\%}    \\
+    Weather + DALLE2 & ResNet34 & {92.67\%}          & {92.67\%}       & {92.67\%}      & {71.88\%}    \\
+    Weather + DALLE2 & ResNet50 & {92.67\%}          & {92.67\%}       & {92.67\%}      & {71.88\%}    \\
+    \hline
+  \end{tabular}
+  \caption{Precision, Recall and F1-Score on the \% datasets}
+  \label{tab:results-on-datasets}
+\end{table*}
 
-\begin{figure}[htbp]
-\centering
-\subfigure{
-\begin{minipage}[t]{\linewidth}
-\centering
-\includegraphics[width=4in]{paper/training_confusion_matrix.jpg}
-\caption{Validation Confusion Matrix}
-\end{minipage}%
-}%
-\end{figure}
 
 \section{Conclusion}
 
