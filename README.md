@@ -42,8 +42,8 @@ Download datasets: [Dataset Releases](https://github.com/dizys/nyu-cv-final-proj
 
 Train on the main dataset:
 
--   [ResNet34](notebooks/fastai_resnet34_train.ipynb)
--   [ResNet50](notebooks/fastai_resnet50_train.ipynb)
+-   [ResNet34 Train](notebooks/fastai_resnet34_train.ipynb)
+-   [ResNet50 Train](notebooks/fastai_resnet50_train.ipynb)
 
 Test on other datasets:
 
