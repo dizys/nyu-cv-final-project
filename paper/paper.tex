@@ -192,44 +192,43 @@ The testing dataset includes several types of pictures:
 To evaluate the performance of the model, we used accuracy, precision, recall and F1-score as evaluation metrics. Below are the formulas for calculating the accuracy, precision, recall and F1-score. Here we assume the AI-generated pictures as positive labels while original pictures as negative labels. Thus, TP is the number of AI pictures being correctly predicted as AI pictures, FP is the number of original pictures being wrongly predicted as AI pictures. Similarly, TN is the number of original pictures being correctly predicted as original pictures, FN is the number of AI pictures being wrongly predicted as original pictures.
 
 \[
-Accuracy = \frac{TP+TN}{TP+FP+TN+FN}
+  Accuracy = \frac{TP+TN}{TP+FP+TN+FN}
 \]
 \[
-Precision = \frac{TP}{TP+FP}
+  Precision = \frac{TP}{TP+FP}
 \]
 \[
-Recall = \frac{TP}{TP+FN}
+  Recall = \frac{TP}{TP+FN}
 \]
 \[
-F1 = \frac{2 \times Precision \times Recall}{Precision + Recall}
+  F1 = \frac{2 \times Precision \times Recall}{Precision + Recall}
 \]
 
 
 \section{Experiment Results}
 
-% TODO: Placeholder for now, data not real
 \begin{table*}
   \centering
   \begin{tabular}{c|c||c|c|c|c}
     \hline
-    \textbf{Dataset} & \textbf{Model} & \textbf{Precision} & \textbf{Recall} & \textbf{F1-Score} & \textbf{Accuracy} \\
+    \textbf{Dataset}      & \textbf{Model} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1-Score} \\
     \hline
-    Indoor + SD & ResNet34       & {71.88\%}          & {61.33\%}       & {66.19\%}      & {71.88\%}    \\
-    Indoor + SD & ResNet50           & {93.75\%}          & {90.00\%}       & {91.84\%}      & {71.88\%}    \\
-    Weather + SD & ResNet34  & {93.19\%}          & {91.33\%}       & {92.25\%}       & {71.88\%}   \\
-    Weather + SD & ResNet50       & {92.00\%}          & {92.00\%}       & {92.00\%}      & {71.88\%}    \\
-    Comic + SD & ResNet34 & {92.00\%}          & {92.00\%}       & {92.00\%}      & {71.88\%}    \\
-    Comic + SD & ResNet50 & {92.00\%}          & {92.00\%}       & {92.00\%}      & {71.88\%}    \\
-    Small Indoor + DALLE2 & ResNet34 & {92.67\%}          & {92.67\%}       & {92.67\%}      & {71.88\%}    \\
-    Small Indoor + DALLE2 & ResNet50 & {92.67\%}          & {92.67\%}       & {92.67\%}      & {71.88\%}    \\
-    Weather + DALLE2 & ResNet34 & {92.67\%}          & {92.67\%}       & {92.67\%}      & {71.88\%}    \\
-    Weather + DALLE2 & ResNet50 & {92.67\%}          & {92.67\%}       & {92.67\%}      & {71.88\%}    \\
+    Indoor + SD (train)   & ResNet34       & {98.99\%}         & {99.07\%}          & {98.72\%}       & {99.00\%}         \\
+    Indoor + SD (train)   & ResNet50       & {98.51\%}         & {98.90\%}          & {98.10\%}       & {98.50\%}         \\
+    \hline
+    Weather + SD          & ResNet34       & {69.75\%}         & {63.46\%}          & {93.13\%}       & {75.48\%}         \\
+    Weather + SD          & ResNet50       & {71.55\%}         & {64.65\%}          & {95.07\%}       & {76.97\%}         \\
+    Comic + SD            & ResNet34       & {92.87\%}         & {88.58\%}          & {98.44\%}       & {93.25\%}         \\
+    Comic + SD            & ResNet50       & {98.34\%}         & {100.00\%}         & {96.68\%}       & {98.31\%}         \\
+    Small Indoor + DALLE2 & ResNet34       & {51.04\%}         & {80.95\%}          & {2.72\%}        & {5.27\%}          \\
+    Small Indoor + DALLE2 & ResNet50       & {51.84\%}         & {82.86\%}          & {4.65\%}        & {8.80\%}          \\
+    Weather + DALLE2      & ResNet34       & {50.83\%}         & {53.33\%}          & {13.33\%}       & {21.33\%}         \\
+    Weather + DALLE2      & ResNet50       & {50.67\%}         & {56.67\%}          & {5.67\%}        & {10.30\%}         \\
     \hline
   \end{tabular}
   \caption{Precision, Recall and F1-Score on the \% datasets}
   \label{tab:results-on-datasets}
 \end{table*}
-
 
 \section{Conclusion}
 

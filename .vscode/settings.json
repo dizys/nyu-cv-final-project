@@ -22,7 +22,8 @@
         // Enable intellisence/quick suggestions
         "editor.suggest.snippetsPreventQuickSuggestions": false,
         // Indentation size
-        "editor.tabSize": 2
+        "editor.tabSize": 2,
+        "editor.defaultFormatter": "James-Yu.latex-workshop"
     },
     "[bibtex]": {
         // Indentation size
