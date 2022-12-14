@@ -34,9 +34,10 @@ pip install -r requirements.txt --no-index --find-links=/scratch/$USER/pip_cache
 
 ## Get Dataset
 
-We custom built the dataset ourselves from existing public real-photo datasets. We used Stable-Diffusion-based image-to-image model to generate images from real photos. This way, we ended up with a labeled dataset of real photos and generated photos. Learn how to build the dataset from [dataset/README.md](dataset/README.md).
+We custom built the dataset ourselves from existing public real-photo datasets. We used diffusion-model-based image-to-image models to generate images from real photos, including Stable Diffusion and DALLE2(available only as APIs). This way, we ended up with a labeled dataset of real photos and generated photos.
 
-Download datasets: [Dataset Releases](https://github.com/dizys/nyu-cv-final-project/releases/tag/dataset)
+-   How we built it: [dataset/README.md](dataset/README.md)
+-   Download datasets: [Dataset Releases](https://github.com/dizys/nyu-cv-final-project/releases/tag/dataset)
 
 ## Experiment Notebooks
 
